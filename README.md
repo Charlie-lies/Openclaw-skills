@@ -224,7 +224,7 @@ Use `${variableName}` to reference variables:
 
 The `examples/` folder contains ready-to-use flow definitions demonstrating various automation scenarios:
 
-### 馃搧 Available Examples
+### 📁 Available Examples
 
 | Example | Description | Key Features |
 |---------|-------------|--------------|
@@ -233,13 +233,11 @@ The `examples/` folder contains ready-to-use flow definitions demonstrating vari
 | `amazon-search.json` | Amazon product search | Element loops, data extraction, Excel export |
 | `auto-login.json` | Batch login with Excel | Excel import, data loop, form automation |
 | `conditional-scraping.json` | Smart data scraping | Conditions, pagination, nested loops |
-| `product-scraper-flow.json` | Product data extraction | XPath selectors, multi-field extraction |
-| `product-scraper-js.json` | JavaScript extraction | JS data extraction, JSON parsing |
-| `product-scraper-js-manualfixed.json` | **猸?Recommended** | CombineProcess grouping, visual organization |
+| `product-scraper-combined.json` | **⭐ Complete Product Scraper** | Excel import, JS extraction, combineProcess grouping |
 | `social-media-poster.json` | Multi-platform posting | Conditional logic, image upload |
 | `youtube-browser.json` | YouTube automation | Random selection, video browsing |
 
-### 馃殌 How to Use Examples
+### 🚀 How to Use Examples
 
 #### 1. Direct Import to AdsPower
 
@@ -252,7 +250,7 @@ type examples\amazon-search.json | clip  # Windows
 
 Then in AdsPower:
 1. Open **RPA Plus**
-2. Click **"Import Flow"** (瀵煎叆娴佺▼)
+2. Click **"Import Flow"** (导入流程)
 3. Paste the JSON content
 4. Click **"Confirm"** to import
 
@@ -274,9 +272,9 @@ Edit the example JSON to customize:
 - **Excel paths**: Update file paths for data import/export
 - **Timeouts**: Adjust wait times based on page load speed
 
-### 馃搳 Example: Product Scraper with Excel
+### 📊 Example: Product Scraper with Excel
 
-The `product-scraper-js-manualfixed.json` is the most complete example showing:
+The `product-scraper-combined.json` is the most complete example showing:
 
 1. **Excel Import** (`useExcel`): Import product data from Excel
 2. **Data Loop** (`forLists`): Iterate through each product row
@@ -293,7 +291,7 @@ The `product-scraper-js-manualfixed.json` is the most complete example showing:
 | PD001 | https://example.com/pd001 |
 | PD002 | https://example.com/pd002 |
 
-### 馃И Quick Test Example
+### 🧪 Quick Test Example
 
 Start with `test-google-search.json` to verify your setup:
 
@@ -305,7 +303,7 @@ Start with `test-google-search.json` to verify your setup:
 # 3. Take a screenshot
 ```
 
-### 鈿狅笍 Important Notes
+### ⚠️ Important Notes
 
 1. **Excel Paths**: Update file paths in examples to match your system:
    - Windows: `C:/data/accounts.xlsx` or `C:\\data\\accounts.xlsx`
@@ -321,8 +319,8 @@ Start with `test-google-search.json` to verify your setup:
 ## Import/Export
 
 The generated JSON can be imported directly into AdsPower RPA:
-1. Open AdsPower 鈫?RPA Plus
-2. Click "Import Flow" (瀵煎叆娴佺▼)
+1. Open AdsPower → RPA Plus
+2. Click "Import Flow" (导入流程)
 3. Paste the generated JSON
 4. Review and save
 
