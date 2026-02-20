@@ -1,0 +1,61 @@
+{
+  "name": "Amazon Product Search",
+  "description": "Search for products on Amazon and extract product information",
+  "steps": [
+    {
+      "action": "visit",
+      "url": "https://www.amazon.com",
+      "remark": "Open Amazon homepage"
+    },
+    {
+      "action": "wait",
+      "timeoutType": "random",
+      "timeoutMin": 2000,
+      "timeoutMax": 3500
+    },
+    {
+      "action": "input",
+      "selector": "#twotabsearchtextbox",
+      "content": "iPhone 15 case",
+      "clearInput": true,
+      "intervals": 50
+    },
+    {
+      "action": "key",
+      "key": "Enter"
+    },
+    {
+      "action": "waitFor",
+      "selector": ".s-result-item",
+      "timeout": 15000
+    },
+    {
+      "action": "forElements",
+      "selector": ".s-result-item[data-component-type='s-search-result']",
+      "extractType": "object",
+      "saveTo": "product",
+      "saveIndexTo": "idx",
+      "do": [
+        {
+          "action": "extract",
+          "element": "${product}",
+          "extractType": "text",
+          "selector": "h2 a span",
+          "saveTo": "title"
+        },
+        {
+          "action": "extract",
+          "element": "${product}",
+          "extractType": "text",
+          "selector": ".a-price-whole",
+          "saveTo": "price"
+        },
+        {
+          "action": "saveExcel",
+          "filename": "amazon_products.xlsx",
+          "columns": ["title", "price"]
+        }
+      ]
+    }
+  ]
+}

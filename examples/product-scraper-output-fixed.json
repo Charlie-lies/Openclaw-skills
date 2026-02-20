@@ -1,0 +1,124 @@
+[
+  {
+    "type": "useExcel",
+    "config": {
+      "path": "产品信息.xlsx",
+      "variableList": ["SKU", "链接"],
+      "variable": "products",
+      "remark": "Import product data from Excel"
+    }
+  },
+  {
+    "type": "forLists",
+    "config": {
+      "content": "${products}",
+      "variable": "product",
+      "variableIndex": "productIndex",
+      "children": [
+        {
+          "type": "extractKey",
+          "config": {
+            "content": "${product}",
+            "key": "SKU",
+            "variable": "sku",
+            "remark": "Extract SKU"
+          }
+        },
+        {
+          "type": "extractKey",
+          "config": {
+            "content": "${product}",
+            "key": "链接",
+            "variable": "url",
+            "remark": "Extract product URL"
+          }
+        },
+        {
+          "type": "gotoUrl",
+          "config": {
+            "url": "${url}",
+            "timeout": 45000,
+            "remark": "Open product page"
+          }
+        },
+        {
+          "type": "waitTime",
+          "config": {
+            "timeoutType": "randomInterval",
+            "timeoutMin": 3000,
+            "timeoutMax": 6000,
+            "remark": "Wait for page to load"
+          }
+        },
+        {
+          "type": "elementData",
+          "config": {
+            "selector": "//div[@data-fusion-component='@thd-olt-component-react/price']",
+            "selectorType": "xpath",
+            "extractType": "text",
+            "saveTo": "price",
+            "remark": "Extract price"
+          }
+        },
+        {
+          "type": "elementData",
+          "config": {
+            "selector": "//div[@class='sui-grid-cols-12']/div",
+            "selectorType": "xpath",
+            "extractType": "text",
+            "saveTo": "shipmethod",
+            "remark": "Extract shipping method"
+          }
+        },
+        {
+          "type": "elementData",
+          "config": {
+            "selector": "//div[@data-component='buybox:BuyboxActions:v5.134.0']",
+            "selectorType": "xpath",
+            "extractType": "text",
+            "saveTo": "buybox",
+            "remark": "Extract buybox info"
+          }
+        },
+        {
+          "type": "elementData",
+          "config": {
+            "selector": "//div[@id='product-section-qa']",
+            "selectorType": "xpath",
+            "extractType": "text",
+            "saveTo": "QnA",
+            "remark": "Extract QnA section"
+          }
+        },
+        {
+          "type": "elementData",
+          "config": {
+            "selector": "//div[@id='product-section-rr']",
+            "selectorType": "xpath",
+            "extractType": "text",
+            "saveTo": "Review",
+            "remark": "Extract reviews section"
+          }
+        },
+        {
+          "type": "saveToExcel",
+          "config": {
+            "filename": "产品抓取结果.xlsx",
+            "columns": ["sku", "url", "price", "shipmethod", "buybox", "QnA", "Review"],
+            "remark": "Save extracted data to Excel"
+          }
+        },
+        {
+          "type": "waitTime",
+          "config": {
+            "timeoutType": "randomInterval",
+            "timeoutMin": 2000,
+            "timeoutMax": 4000,
+            "remark": "Wait before next product"
+          }
+        }
+      ],
+      "remark": "Loop through each product"
+    }
+  }
+]

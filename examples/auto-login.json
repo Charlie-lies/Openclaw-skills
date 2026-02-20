@@ -1,0 +1,58 @@
+{
+  "name": "Auto Login",
+  "description": "Automated login with Excel credential import",
+  "steps": [
+    {
+      "action": "importExcel",
+      "path": "C:/data/accounts.xlsx",
+      "variableList": ["email", "password"],
+      "variable": "accounts"
+    },
+    {
+      "action": "forData",
+      "data": "${accounts}",
+      "saveTo": "account",
+      "saveIndexTo": "idx",
+      "do": [
+        {
+          "action": "getField",
+          "data": "${account}",
+          "key": "email",
+          "saveTo": "userEmail"
+        },
+        {
+          "action": "getField",
+          "data": "${account}",
+          "key": "password",
+          "saveTo": "userPassword"
+        },
+        {
+          "action": "visit",
+          "url": "https://example.com/login"
+        },
+        {
+          "action": "wait",
+          "timeout": 3000
+        },
+        {
+          "action": "input",
+          "selector": "#email",
+          "content": "${userEmail}"
+        },
+        {
+          "action": "input",
+          "selector": "#password",
+          "content": "${userPassword}"
+        },
+        {
+          "action": "click",
+          "selector": "#login-button"
+        },
+        {
+          "action": "wait",
+          "timeout": 5000
+        }
+      ]
+    }
+  ]
+}

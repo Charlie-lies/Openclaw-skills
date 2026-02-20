@@ -1,0 +1,64 @@
+{
+  "name": "Test - Google Search Automation",
+  "description": "测试用例：自动访问Google并搜索关键词",
+  "steps": [
+    {
+      "action": "visit",
+      "url": "https://www.google.com",
+      "remark": "打开Google首页"
+    },
+    {
+      "action": "wait",
+      "timeoutType": "random",
+      "timeoutMin": 1500,
+      "timeoutMax": 3000,
+      "remark": "随机等待1.5-3秒"
+    },
+    {
+      "action": "input",
+      "selector": "textarea[name='q']",
+      "content": "AdsPower RPA automation",
+      "clearInput": true,
+      "intervals": 50,
+      "remark": "输入搜索关键词"
+    },
+    {
+      "action": "wait",
+      "timeoutType": "random",
+      "timeoutMin": 800,
+      "timeoutMax": 1500,
+      "remark": "模拟人类输入间隔"
+    },
+    {
+      "action": "key",
+      "key": "Enter",
+      "remark": "按下回车搜索"
+    },
+    {
+      "action": "waitFor",
+      "selector": "#search",
+      "timeout": 10000,
+      "remark": "等待搜索结果加载"
+    },
+    {
+      "action": "scroll",
+      "position": "bottom",
+      "scrollType": "smooth",
+      "remark": "滚动到页面底部"
+    },
+    {
+      "action": "wait",
+      "timeoutType": "random",
+      "timeoutMin": 2000,
+      "timeoutMax": 4000,
+      "remark": "停留浏览"
+    },
+    {
+      "action": "screenshot",
+      "name": "google_search_result",
+      "fullScreen": true,
+      "format": "png",
+      "remark": "截图保存结果"
+    }
+  ]
+}

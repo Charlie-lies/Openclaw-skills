@@ -1,0 +1,72 @@
+{
+  "name": "Data Scraping with Condition",
+  "description": "Scrape data with conditional logic and pagination",
+  "steps": [
+    {
+      "action": "visit",
+      "url": "https://example.com/products"
+    },
+    {
+      "action": "forCount",
+      "count": 5,
+      "saveIndexTo": "pageNum",
+      "do": [
+        {
+          "action": "waitFor",
+          "selector": ".product-item",
+          "timeout": 10000
+        },
+        {
+          "action": "forElements",
+          "selector": ".product-item",
+          "saveTo": "product",
+          "do": [
+            {
+              "action": "extract",
+              "element": "${product}",
+              "extractType": "text",
+              "selector": ".product-name",
+              "saveTo": "name"
+            },
+            {
+              "action": "extract",
+              "element": "${product}",
+              "extractType": "text",
+              "selector": ".product-price",
+              "saveTo": "price"
+            },
+            {
+              "action": "if",
+              "variable": "price",
+              "condition": "contains",
+              "value": "$",
+              "then": [
+                {
+                  "action": "saveExcel",
+                  "filename": "products.xlsx",
+                  "columns": ["name", "price"]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "action": "if",
+          "variable": "pageNum",
+          "condition": "lt",
+          "value": 5,
+          "then": [
+            {
+              "action": "click",
+              "selector": ".next-page"
+            },
+            {
+              "action": "wait",
+              "timeout": 3000
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
