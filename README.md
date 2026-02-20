@@ -220,12 +220,111 @@ Use `${variableName}` to reference variables:
 }
 ```
 
+## Examples
+
+The `examples/` folder contains ready-to-use flow definitions demonstrating various automation scenarios:
+
+### 馃搧 Available Examples
+
+| Example | Description | Key Features |
+|---------|-------------|--------------|
+| `template.json` | Basic template | Simple visit, wait, click, input actions |
+| `test-google-search.json` | Google search automation | Random waits, typing simulation, screenshot |
+| `amazon-search.json` | Amazon product search | Element loops, data extraction, Excel export |
+| `auto-login.json` | Batch login with Excel | Excel import, data loop, form automation |
+| `conditional-scraping.json` | Smart data scraping | Conditions, pagination, nested loops |
+| `product-scraper-flow.json` | Product data extraction | XPath selectors, multi-field extraction |
+| `product-scraper-js.json` | JavaScript extraction | JS data extraction, JSON parsing |
+| `product-scraper-js-manualfixed.json` | **猸?Recommended** | CombineProcess grouping, visual organization |
+| `social-media-poster.json` | Multi-platform posting | Conditional logic, image upload |
+| `youtube-browser.json` | YouTube automation | Random selection, video browsing |
+
+### 馃殌 How to Use Examples
+
+#### 1. Direct Import to AdsPower
+
+```bash
+# Copy the JSON content from any example file
+cat examples/amazon-search.json | pbcopy  # macOS
+cat examples/amazon-search.json | xclip -selection clipboard  # Linux
+type examples\amazon-search.json | clip  # Windows
+```
+
+Then in AdsPower:
+1. Open **RPA Plus**
+2. Click **"Import Flow"** (瀵煎叆娴佺▼)
+3. Paste the JSON content
+4. Click **"Confirm"** to import
+
+#### 2. Generate Using the Skill
+
+```bash
+# Generate flow from example
+openclaw skill adspower-rpa generate --file examples/amazon-search.json --output my-flow.json
+
+# Or use the Python script directly
+python generate.py examples/amazon-search.json --output my-flow.json
+```
+
+#### 3. Modify for Your Needs
+
+Edit the example JSON to customize:
+- **URLs**: Change target websites
+- **Selectors**: Update CSS/XPath for your target page
+- **Excel paths**: Update file paths for data import/export
+- **Timeouts**: Adjust wait times based on page load speed
+
+### 馃搳 Example: Product Scraper with Excel
+
+The `product-scraper-js-manualfixed.json` is the most complete example showing:
+
+1. **Excel Import** (`useExcel`): Import product data from Excel
+2. **Data Loop** (`forLists`): Iterate through each product row
+3. **Process Grouping** (`combineProcess`): Visually organize steps
+   - Group 1: Extract fields (SKU, URL)
+   - Group 2: Visit page and wait
+   - Group 3: Extract data using JavaScript
+4. **JavaScript Extraction**: Extract multiple fields in one JS execution
+5. **Excel Export** (`exportExcel`): Save results to Excel
+
+**Excel format expected:**
+| SKU | URL |
+|-----|-----|
+| PD001 | https://example.com/pd001 |
+| PD002 | https://example.com/pd002 |
+
+### 馃И Quick Test Example
+
+Start with `test-google-search.json` to verify your setup:
+
+```bash
+# Import this example to AdsPower
+# It will:
+# 1. Open Google
+# 2. Search for "AdsPower RPA automation"
+# 3. Take a screenshot
+```
+
+### 鈿狅笍 Important Notes
+
+1. **Excel Paths**: Update file paths in examples to match your system:
+   - Windows: `C:/data/accounts.xlsx` or `C:\\data\\accounts.xlsx`
+   - macOS/Linux: `/Users/username/data/accounts.xlsx`
+
+2. **Selectors**: Website structures change. If an example fails:
+   - Open the target website in browser
+   - Use DevTools (F12) to inspect elements
+   - Update CSS/XPath selectors accordingly
+
+3. **Timeouts**: Adjust based on your internet speed and page complexity
+
 ## Import/Export
 
 The generated JSON can be imported directly into AdsPower RPA:
-1. Open AdsPower → RPA Plus
-2. Click "Import Flow"
+1. Open AdsPower 鈫?RPA Plus
+2. Click "Import Flow" (瀵煎叆娴佺▼)
 3. Paste the generated JSON
+4. Review and save
 
 ## Advanced Features
 
