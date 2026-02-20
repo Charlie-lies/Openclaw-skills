@@ -1,0 +1,337 @@
+[
+    {
+        "type": "useExcel",
+        "nodeInfo": {
+            "search": false,
+            "active": false,
+            "error": false
+        },
+        "config": {
+            "path": "浜у搧淇℃伅.xlsx",
+            "variableList": [
+                "SKU",
+                "URL"
+            ],
+            "isSkip": "0",
+            "remark": "Import product data from Excel",
+            "variable": "products"
+        }
+    },
+    {
+        "type": "forLists",
+        "nodeInfo": {
+            "search": false,
+            "active": false,
+            "error": false
+        },
+        "config": {
+            "content": "products",
+            "variableIndex": "for_list_index",
+            "variable": "for_list_item",
+            "hiddenChildren": false,
+            "children": [
+                {
+                    "type": "combineProcess",
+                    "nodeInfo": {
+                        "active": false,
+                        "search": false,
+                        "error": false
+                    },
+                    "config": {
+                        "blocks": [
+                            {
+                                "id": "623774c4-1b97-466e-afee-31834c00a8e3",
+                                "data": {
+                                    "type": "extractKey",
+                                    "nodeInfo": {
+                                        "search": false,
+                                        "active": false,
+                                        "parentId": "d0f66c86-3e11-4f10-86c2-d0ea28aa116f",
+                                        "error": false
+                                    },
+                                    "config": {
+                                        "content": "for_list_item",
+                                        "key": "SKU",
+                                        "variable": "sku",
+                                        "remark": "Extract SKU"
+                                    }
+                                },
+                                "selected": false
+                            },
+                            {
+                                "id": "dea709ad-3c2e-4c08-984d-c711ba72bcd1",
+                                "data": {
+                                    "type": "extractKey",
+                                    "nodeInfo": {
+                                        "search": false,
+                                        "active": false,
+                                        "parentId": "d0f66c86-3e11-4f10-86c2-d0ea28aa116f",
+                                        "error": false
+                                    },
+                                    "config": {
+                                        "content": "for_list_item",
+                                        "key": "URL",
+                                        "variable": "url",
+                                        "remark": "Extract product URL"
+                                    }
+                                },
+                                "selected": false
+                            }
+                        ]
+                    },
+                    "groupName": "鎻愬彇瀛楁"
+                },
+                {
+                    "type": "combineProcess",
+                    "nodeInfo": {
+                        "active": false,
+                        "search": false,
+                        "error": false,
+                        "disabled": false
+                    },
+                    "config": {
+                        "blocks": [
+                            {
+                                "id": "19203062-9cd7-40e4-bf9e-19e507d33bd4",
+                                "data": {
+                                    "type": "gotoUrl",
+                                    "nodeInfo": {
+                                        "search": false,
+                                        "active": false,
+                                        "error": false,
+                                        "parentId": "74649bae-8a3d-4942-a7a1-1e6dff806c1c"
+                                    },
+                                    "config": {
+                                        "url": "${url}",
+                                        "timeout": 10000,
+                                        "remark": "Open product page"
+                                    }
+                                },
+                                "selected": false
+                            },
+                            {
+                                "id": "54ec0b9a-bb7c-48d8-b1e5-c2f8e1eeb260",
+                                "data": {
+                                    "type": "waitTime",
+                                    "nodeInfo": {
+                                        "search": false,
+                                        "active": false,
+                                        "parentId": "74649bae-8a3d-4942-a7a1-1e6dff806c1c",
+                                        "error": false
+                                    },
+                                    "config": {
+                                        "timeoutType": "randomInterval",
+                                        "timeout": 10000,
+                                        "timeoutMin": 20000,
+                                        "timeoutMax": 25000,
+                                        "remark": "Wait for page to load"
+                                    }
+                                },
+                                "selected": false
+                            },
+                            {
+                                "id": "daf2ee0f-fc69-4636-a167-230495ca7258",
+                                "data": {
+                                    "type": "scrollPage",
+                                    "nodeInfo": {
+                                        "search": false,
+                                        "active": false,
+                                        "parentId": "74649bae-8a3d-4942-a7a1-1e6dff806c1c",
+                                        "error": false
+                                    },
+                                    "config": {
+                                        "rangeType": "window",
+                                        "selectorRadio": "CSS",
+                                        "selector": "",
+                                        "serial": 1,
+                                        "distance": 666,
+                                        "type": "smooth",
+                                        "scrollType": "position",
+                                        "position": "middle",
+                                        "remark": "",
+                                        "randomWheelDistance": [
+                                            100,
+                                            150
+                                        ],
+                                        "randomWheelSleepTime": [
+                                            200,
+                                            315
+                                        ]
+                                    }
+                                },
+                                "selected": false
+                            }
+                        ]
+                    },
+                    "zIndex": 3000,
+                    "isRunDebug": false,
+                    "groupName": "璁块棶椤甸潰"
+                },
+                {
+                    "type": "combineProcess",
+                    "nodeInfo": {
+                        "active": false,
+                        "search": false,
+                        "error": false
+                    },
+                    "config": {
+                        "blocks": [
+                            {
+                                "id": "9a295068-ef7b-474b-9345-7726752fad1b",
+                                "data": {
+                                    "type": "javaScript",
+                                    "nodeInfo": {
+                                        "search": false,
+                                        "active": false,
+                                        "error": false,
+                                        "parentId": "c787c30d-863b-43bd-81a1-15851c9b4fa4"
+                                    },
+                                    "config": {
+                                        "params": [],
+                                        "content": "let result={};try{let priceEl=document.evaluate('//div[@data-fusion-component=\"@thd-olt-component-react/price\"]',document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue;result.price=priceEl?priceEl.textContent.trim():\"\"}catch(e){result.price=\"\"}try{let shipEl=document.evaluate('//div[@class=\"sui-grid-cols-12\"]/div',document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue;result.shipmethod=shipEl?shipEl.textContent.trim():\"\"}catch(e){result.shipmethod=\"\"}try{let buyboxEl=document.evaluate('//div[@data-component=\"buybox:BuyboxActions:v5.134.0\"]',document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue;result.buybox=buyboxEl?buyboxEl.textContent.trim():\"\"}catch(e){result.buybox=\"\"}try{let qnaEl=document.evaluate('//div[@id=\"product-section-qa\"]',document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue;result.QnA=qnaEl?qnaEl.textContent.trim():\"\"}catch(e){result.QnA=\"\"}try{let reviewEl=document.evaluate('//div[@id=\"product-section-rr\"]',document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue;result.Review=reviewEl?reviewEl.textContent.trim():\"\"}catch(e){result.Review=\"\"}return JSON.stringify(result)",
+                                        "srcContent": "let result = {};\n\n// Get price\ntry {\n  let priceEl = document.evaluate('//div[@data-fusion-component=\"@thd-olt-component-react/price\"]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;\n  result.price = priceEl ? priceEl.textContent.trim() : '';\n} catch(e) { result.price = ''; }\n\n// Get shipping method\ntry {\n  let shipEl = document.evaluate('//div[@class=\"sui-grid-cols-12\"]/div', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;\n  result.shipmethod = shipEl ? shipEl.textContent.trim() : '';\n} catch(e) { result.shipmethod = ''; }\n\n// Get buybox\ntry {\n  let buyboxEl = document.evaluate('//div[@data-component=\"buybox:BuyboxActions:v5.134.0\"]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;\n  result.buybox = buyboxEl ? buyboxEl.textContent.trim() : '';\n} catch(e) { result.buybox = ''; }\n\n// Get QnA\ntry {\n  let qnaEl = document.evaluate('//div[@id=\"product-section-qa\"]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;\n  result.QnA = qnaEl ? qnaEl.textContent.trim() : '';\n} catch(e) { result.QnA = ''; }\n\n// Get Reviews\ntry {\n  let reviewEl = document.evaluate('//div[@id=\"product-section-rr\"]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;\n  result.Review = reviewEl ? reviewEl.textContent.trim() : '';\n} catch(e) { result.Review = ''; }\n\nreturn JSON.stringify(result);",
+                                        "variable": "productData",
+                                        "remark": "Extract all product info using JavaScript"
+                                    }
+                                },
+                                "selected": false
+                            },
+                            {
+                                "id": "db94973e-5a08-4b7e-9389-391375875be0",
+                                "data": {
+                                    "type": "javaScript",
+                                    "nodeInfo": {
+                                        "search": false,
+                                        "active": false,
+                                        "error": false,
+                                        "parentId": "c787c30d-863b-43bd-81a1-15851c9b4fa4"
+                                    },
+                                    "config": {
+                                        "params": [
+                                            "productData"
+                                        ],
+                                        "content": "return JSON.parse(productData).price",
+                                        "srcContent": "let data = JSON.parse(productData);\nreturn data.price;",
+                                        "variable": "price",
+                                        "remark": "Extract price from JSON"
+                                    }
+                                },
+                                "selected": false
+                            },
+                            {
+                                "id": "ce706f43-469d-42ba-87a9-e51501cda843",
+                                "data": {
+                                    "type": "javaScript",
+                                    "nodeInfo": {
+                                        "search": false,
+                                        "active": false,
+                                        "parentId": "c787c30d-863b-43bd-81a1-15851c9b4fa4",
+                                        "error": false
+                                    },
+                                    "config": {
+                                        "params": [
+                                            "productData"
+                                        ],
+                                        "content": "return JSON.parse(productData).shipmethod",
+                                        "srcContent": "let data = JSON.parse(productData);\nreturn data.shipmethod;",
+                                        "variable": "shipmethod",
+                                        "remark": "Extract shipping method from JSON"
+                                    }
+                                },
+                                "selected": false
+                            },
+                            {
+                                "id": "d177bb63-0971-48e7-a619-785625656cff",
+                                "data": {
+                                    "type": "javaScript",
+                                    "nodeInfo": {
+                                        "search": false,
+                                        "active": false,
+                                        "parentId": "c787c30d-863b-43bd-81a1-15851c9b4fa4",
+                                        "error": false
+                                    },
+                                    "config": {
+                                        "params": [
+                                            "productData"
+                                        ],
+                                        "content": "return JSON.parse(productData).buybox",
+                                        "srcContent": "let data = JSON.parse(productData);\nreturn data.buybox;",
+                                        "variable": "buybox",
+                                        "remark": "Extract buybox from JSON"
+                                    }
+                                },
+                                "selected": false
+                            },
+                            {
+                                "id": "bffc6c3f-5a05-4793-b4ac-d799a7f27b71",
+                                "data": {
+                                    "type": "javaScript",
+                                    "nodeInfo": {
+                                        "search": false,
+                                        "active": false,
+                                        "parentId": "c787c30d-863b-43bd-81a1-15851c9b4fa4",
+                                        "error": false
+                                    },
+                                    "config": {
+                                        "params": [
+                                            "productData"
+                                        ],
+                                        "content": "return JSON.parse(productData).QnA",
+                                        "srcContent": "let data = JSON.parse(productData);\nreturn data.QnA;",
+                                        "variable": "QnA",
+                                        "remark": "Extract QnA from JSON"
+                                    }
+                                },
+                                "selected": false
+                            },
+                            {
+                                "id": "3bb6c3d6-956c-4286-8b6e-0081102f5055",
+                                "data": {
+                                    "type": "javaScript",
+                                    "nodeInfo": {
+                                        "search": false,
+                                        "active": false,
+                                        "parentId": "c787c30d-863b-43bd-81a1-15851c9b4fa4",
+                                        "error": false
+                                    },
+                                    "config": {
+                                        "params": [
+                                            "productData"
+                                        ],
+                                        "content": "return JSON.parse(productData).Review",
+                                        "srcContent": "let data = JSON.parse(productData);\nreturn data.Review;",
+                                        "variable": "Review",
+                                        "remark": "Extract reviews from JSON"
+                                    }
+                                },
+                                "selected": false
+                            }
+                        ]
+                    },
+                    "groupName": "鎻愬彇椤甸潰鏁版嵁"
+                },
+                {
+                    "type": "exportExcel",
+                    "nodeInfo": {
+                        "search": false,
+                        "active": false,
+                        "error": false
+                    },
+                    "config": {
+                        "name": "浜у搧鎶撳彇缁撴灉",
+                        "fields": [
+                            "sku",
+                            "url",
+                            "price",
+                            "shipmethod",
+                            "QnA",
+                            "Review"
+                        ],
+                        "remark": "Save extracted data to Excel"
+                    }
+                }
+            ],
+            "remark": "Loop through each product"
+        }
+    }
+]
