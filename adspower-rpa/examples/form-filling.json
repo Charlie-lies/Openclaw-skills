@@ -1,0 +1,217 @@
+[
+  {
+    "type": "gotoUrl",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "url": "https://example.com/form",
+      "timeout": 30000,
+      "remark": "Open form page"
+    }
+  },
+  {
+    "type": "waitTime",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "timeoutType": "randomInterval",
+      "timeoutMin": 1500,
+      "timeoutMax": 2500,
+      "remark": "Wait for form to load"
+    }
+  },
+  {
+    "type": "waitElement",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "selector": "#name",
+      "selectorType": "selector",
+      "serialType": "fixedValue",
+      "serial": 1,
+      "visible": true,
+      "timeout": 10000,
+      "remark": "Wait for name field"
+    }
+  },
+  {
+    "type": "inputContent",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "selector": "#name",
+      "selectorType": "selector",
+      "serialType": "fixedValue",
+      "serial": 1,
+      "content": "${formData.name}",
+      "clearInput": true,
+      "intervals": 50,
+      "remark": "Enter name"
+    }
+  },
+  {
+    "type": "inputContent",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "selector": "#email",
+      "selectorType": "selector",
+      "serialType": "fixedValue",
+      "serial": 1,
+      "content": "${formData.email}",
+      "clearInput": true,
+      "intervals": 50,
+      "remark": "Enter email"
+    }
+  },
+  {
+    "type": "clickElement",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "selector": "#country",
+      "selectorType": "selector",
+      "serialType": "fixedValue",
+      "serial": 1,
+      "remark": "Open country dropdown"
+    }
+  },
+  {
+    "type": "waitTime",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "timeoutType": "fixedValue",
+      "timeout": 500,
+      "remark": "Wait for dropdown"
+    }
+  },
+  {
+    "type": "clickElement",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "selector": "option[value='${formData.country}']",
+      "selectorType": "selector",
+      "serialType": "fixedValue",
+      "serial": 1,
+      "remark": "Select country"
+    }
+  },
+  {
+    "type": "javaScript",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "params": [],
+      "content": "return ${formData.subscribe} === true;",
+      "srcContent": "return ${formData.subscribe} === true;",
+      "variable": "shouldSubscribe",
+      "remark": "Check if should subscribe"
+    }
+  },
+  {
+    "type": "clickElement",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "selector": "#subscribe",
+      "selectorType": "selector",
+      "serialType": "fixedValue",
+      "serial": 1,
+      "remark": "Check subscribe checkbox"
+    }
+  },
+  {
+    "type": "waitTime",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "timeoutType": "randomInterval",
+      "timeoutMin": 800,
+      "timeoutMax": 1500,
+      "remark": "Wait before submit"
+    }
+  },
+  {
+    "type": "clickElement",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "selector": "#submit",
+      "selectorType": "selector",
+      "serialType": "fixedValue",
+      "serial": 1,
+      "remark": "Submit form"
+    }
+  },
+  {
+    "type": "waitElement",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "selector": ".success-message",
+      "selectorType": "selector",
+      "serialType": "fixedValue",
+      "serial": 1,
+      "visible": true,
+      "timeout": 15000,
+      "remark": "Wait for success message"
+    }
+  },
+  {
+    "type": "screenshot",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "name": "form_submitted",
+      "folder": "system",
+      "fullScreen": true,
+      "format": "png",
+      "quality": 80,
+      "remark": "Screenshot confirmation"
+    }
+  }
+]

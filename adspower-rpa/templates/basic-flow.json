@@ -1,0 +1,29 @@
+[
+  {
+    "type": "gotoUrl",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "url": "https://example.com",
+      "timeout": 30000,
+      "remark": "Open website"
+    }
+  },
+  {
+    "type": "waitTime",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "timeoutType": "randomInterval",
+      "timeoutMin": 1500,
+      "timeoutMax": 3000,
+      "remark": "Wait for page load"
+    }
+  }
+]

@@ -1,0 +1,97 @@
+[
+  {
+    "type": "gotoUrl",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "url": "https://example.com",
+      "timeout": 30000,
+      "remark": "Open page"
+    }
+  },
+  {
+    "type": "waitElement",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "selector": ".target-element",
+      "selectorType": "selector",
+      "serialType": "fixedValue",
+      "serial": 1,
+      "visible": true,
+      "timeout": 10000,
+      "remark": "Wait for element"
+    }
+  },
+  {
+    "type": "combineProcess",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "blocks": [
+        {
+          "id": "check-condition",
+          "data": {
+            "type": "javaScript",
+            "nodeInfo": {
+              "search": false,
+              "active": false,
+              "error": false
+            },
+            "config": {
+              "params": [],
+              "content": "return document.querySelector('.success') !== null;",
+              "srcContent": "return document.querySelector('.success') !== null;",
+              "variable": "isSuccess",
+              "remark": "Check if operation succeeded"
+            }
+          },
+          "selected": false
+        },
+        {
+          "id": "handle-result",
+          "data": {
+            "type": "screenshot",
+            "nodeInfo": {
+              "search": false,
+              "active": false,
+              "error": false
+            },
+            "config": {
+              "name": "result",
+              "folder": "system",
+              "fullScreen": true,
+              "format": "png",
+              "quality": 80,
+              "remark": "Capture result"
+            }
+          },
+          "selected": false
+        }
+      ]
+    },
+    "groupName": "Process and Capture"
+  },
+  {
+    "type": "waitTime",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "timeoutType": "fixedValue",
+      "timeout": 2000,
+      "remark": "Final wait"
+    }
+  }
+]

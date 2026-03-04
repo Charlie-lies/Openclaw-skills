@@ -14,7 +14,12 @@ openclaw-skills/
 │   └── references/                    # Reference documents
 │       ├── lancedb-pro-readme.md
 │       └── ollama-autostart.md
-└── [future-skills]/                   # More skills...
+└── adspower-rpa/                      # Skill: AdsPower RPA automation
+    ├── SKILL.md                       # Skill definition
+    ├── schema/                        # JSON schemas
+    ├── templates/                     # Flow templates
+    ├── examples/                      # Example flows
+    └── usecase/                       # Tested use cases
 ```
 
 ## Skills
@@ -32,6 +37,19 @@ Configure memory-lancedb-pro plugin with Ollama local embedding models.
 - Auto-start configuration for Ollama
 
 See [lancedb-ollama-setup/SKILL.md](lancedb-ollama-setup/SKILL.md) for details.
+
+### adspower-rpa
+
+Generate RPA flow JSON for AdsPower fingerprint browser automation.
+
+**Features:**
+- Complete node type reference (gotoUrl, clickElement, inputContent, etc.)
+- Excel import/export operations
+- Data extraction and form filling examples
+- JSON schema validation
+- Ready-to-use templates
+
+See [adspower-rpa/SKILL.md](adspower-rpa/SKILL.md) for details.
 
 ## Managing Skills
 

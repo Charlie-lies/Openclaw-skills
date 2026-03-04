@@ -1,0 +1,150 @@
+[
+  {
+    "type": "gotoUrl",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "url": "https://dsm.commercehub.com/dsm/gotoUploadFile.do",
+      "timeout": 30000,
+      "remark": "Open CommerceHub upload page"
+    }
+  },
+  {
+    "type": "waitTime",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "timeoutType": "randomInterval",
+      "timeoutMin": 2000,
+      "timeoutMax": 3000,
+      "remark": "Wait for page to load"
+    }
+  },
+  {
+    "type": "waitElement",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "selector": "//button[@data-testid='inventory-choose-file-button']",
+      "selectorType": "xpath",
+      "serialType": "fixedValue",
+      "serial": 1,
+      "visible": true,
+      "timeout": 15000,
+      "remark": "Wait for choose file button"
+    }
+  },
+  {
+    "type": "clickElement",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "selector": "//button[@data-testid='inventory-choose-file-button']",
+      "selectorType": "xpath",
+      "serialType": "fixedValue",
+      "serial": 1,
+      "remark": "Click choose file button"
+    }
+  },
+  {
+    "type": "waitTime",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "timeoutType": "fixedValue",
+      "timeout": 1000,
+      "remark": "Wait for file dialog"
+    }
+  },
+  {
+    "type": "uploadFile",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "selector": "input[type='file']",
+      "selectorType": "selector",
+      "serialType": "fixedValue",
+      "serial": 1,
+      "filePath": "D:/inventory/todayinvenory.xlsx",
+      "remark": "Upload inventory file"
+    }
+  },
+  {
+    "type": "waitTime",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "timeoutType": "randomInterval",
+      "timeoutMin": 3000,
+      "timeoutMax": 5000,
+      "remark": "Wait for upload to complete"
+    }
+  },
+  {
+    "type": "waitElement",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "selector": "//button[@data-testid='inventory-upload-file-button']",
+      "selectorType": "xpath",
+      "serialType": "fixedValue",
+      "serial": 1,
+      "visible": true,
+      "timeout": 10000,
+      "remark": "Wait for upload submit button"
+    }
+  },
+  {
+    "type": "clickElement",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "selector": "//button[@data-testid='inventory-upload-file-button']",
+      "selectorType": "xpath",
+      "serialType": "fixedValue",
+      "serial": 1,
+      "remark": "Click upload file button to submit"
+    }
+  },
+  {
+    "type": "waitTime",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "timeoutType": "randomInterval",
+      "timeoutMin": 5000,
+      "timeoutMax": 8000,
+      "remark": "Wait for submission to complete"
+    }
+  }
+]

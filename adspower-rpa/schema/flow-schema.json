@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AdsPower RPA Flow",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["type", "nodeInfo", "config"],
+    "properties": {
+      "type": {
+        "type": "string",
+        "enum": [
+          "gotoUrl", "refresh", "back", "forward",
+          "clickElement", "inputContent", "clearInput", "keyPress", "scrollPage",
+          "waitTime", "waitElement",
+          "getText", "getAttribute", "getElement", "javaScript", "screenshot",
+          "uploadFile", "downloadFile",
+          "useExcel", "exportExcel",
+          "forLists", "forRange", "whileLoop", "break", "continue",
+          "combineProcess", "extractKey",
+          "condition", "setVariable"
+        ],
+        "description": "Node type"
+      },
+      "nodeInfo": {
+        "type": "object",
+        "properties": {
+          "search": { "type": "boolean" },
+          "active": { "type": "boolean" },
+          "error": { "type": "boolean" },
+          "disabled": { "type": "boolean" },
+          "parentId": { "type": "string" }
+        }
+      },
+      "config": {
+        "type": "object",
+        "description": "Node-specific configuration"
+      },
+      "groupName": {
+        "type": "string",
+        "description": "Group name for combineProcess"
+      },
+      "zIndex": { "type": "number" },
+      "isRunDebug": { "type": "boolean" }
+    }
+  }
+}

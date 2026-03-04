@@ -1,0 +1,151 @@
+[
+  {
+    "type": "gotoUrl",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "url": "${productUrl}",
+      "timeout": 30000,
+      "remark": "Open product page"
+    }
+  },
+  {
+    "type": "waitTime",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "timeoutType": "randomInterval",
+      "timeoutMin": 2000,
+      "timeoutMax": 3500,
+      "remark": "Wait for page load"
+    }
+  },
+  {
+    "type": "waitElement",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "selector": ".product-title",
+      "selectorType": "selector",
+      "serialType": "fixedValue",
+      "serial": 1,
+      "visible": true,
+      "timeout": 10000,
+      "remark": "Wait for product title"
+    }
+  },
+  {
+    "type": "javaScript",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "params": [],
+      "content": "let result={};try{result.title=document.querySelector('.product-title').textContent.trim()}catch(e){result.title=''}try{result.price=document.querySelector('.price').textContent.trim()}catch(e){result.price=''}try{result.description=document.querySelector('.description').textContent.trim()}catch(e){result.description=''}return JSON.stringify(result);",
+      "srcContent": "let result = {};\ntry { result.title = document.querySelector('.product-title').textContent.trim(); } catch(e) { result.title = ''; }\ntry { result.price = document.querySelector('.price').textContent.trim(); } catch(e) { result.price = ''; }\ntry { result.description = document.querySelector('.description').textContent.trim(); } catch(e) { result.description = ''; }\nreturn JSON.stringify(result);",
+      "variable": "productData",
+      "remark": "Extract product data"
+    }
+  },
+  {
+    "type": "javaScript",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "params": ["productData"],
+      "content": "return JSON.parse(productData).title;",
+      "srcContent": "return JSON.parse(productData).title;",
+      "variable": "title",
+      "remark": "Extract title"
+    }
+  },
+  {
+    "type": "javaScript",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "params": ["productData"],
+      "content": "return JSON.parse(productData).price;",
+      "srcContent": "return JSON.parse(productData).price;",
+      "variable": "price",
+      "remark": "Extract price"
+    }
+  },
+  {
+    "type": "javaScript",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "params": ["productData"],
+      "content": "return JSON.parse(productData).description;",
+      "srcContent": "return JSON.parse(productData).description;",
+      "variable": "description",
+      "remark": "Extract description"
+    }
+  },
+  {
+    "type": "scrollPage",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "distance": 500,
+      "type": "smooth",
+      "scrollType": "pixel",
+      "position": "middle",
+      "remark": "Scroll to view more content"
+    }
+  },
+  {
+    "type": "waitTime",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "timeoutType": "randomInterval",
+      "timeoutMin": 1000,
+      "timeoutMax": 2000,
+      "remark": "Wait after scroll"
+    }
+  },
+  {
+    "type": "screenshot",
+    "nodeInfo": {
+      "search": false,
+      "active": false,
+      "error": false
+    },
+    "config": {
+      "name": "product_${title}",
+      "folder": "system",
+      "fullScreen": true,
+      "format": "png",
+      "quality": 80,
+      "remark": "Screenshot product page"
+    }
+  }
+]
